@@ -1,0 +1,7 @@
+dist
+deprecated
+node_modules
+python
+release
+
+config.ini
