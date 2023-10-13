@@ -1,0 +1,45 @@
+{
+  "name": "yt-dlp_gui",
+  "productName": "yt-dlp GUI",
+  "version": "0.0.1",
+  "description": "A GUI for yt-dlp",
+  "main": "./frontend/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build",
+    "dev:start": "npx electronmon ."
+  },
+  "author": "kirbyluong",
+  "license": "ISC",
+  "build": {
+    "appId": "com.Personal.ytdlpGUI",
+    "asar": true,
+    "directories": {
+      "output": "./release"
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "build/yt_dlp_GUI.ico"
+  },
+  "files": [
+    "frontend/**/*",
+    "build/yt_dlp_GUI.ico",
+    "!backend/**/*",
+    "!deprecated",
+    "!dist",
+    "!python",
+    "!**/*.ini"
+  ],
+  "extraResources": [
+    {
+      "from": "./backend/dist/app.exe",
+      "to": "."
+    }
+  ]
+  },
+  "devDependencies": {
+    "electron": "27.0.0",
+    "electron-builder": "24.6.4",
+    "electronmon": "^2.0.2"
+  }
+}
