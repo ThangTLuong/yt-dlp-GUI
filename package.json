@@ -32,7 +32,7 @@
   ],
   "extraResources": [
     {
-      "from": "backend/normal_app.py",
+      "from": "./backend/dist/app.exe",
       "to": "."
     }
   ]

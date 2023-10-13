@@ -4,4 +4,7 @@ node_modules
 python
 release
 
+backend/build
+backend/app.spec
+
 config.ini

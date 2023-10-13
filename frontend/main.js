@@ -11,7 +11,7 @@ let pythonProcess;
 
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
-    title:  'Schedule Savior',
+    title:  'yt-dlp GUI',
     width: width,
     height: height,
     webPreferences: {
@@ -54,16 +54,15 @@ app.whenReady().then(() => {
   });
 
   ipcMain.on('data-to-backend', (event, data) => {
-    const pythonScriptPath = path.join(__dirname, '..', '..', 'normal_app.py');
-    const pythonProcess = spawn('python', [pythonScriptPath]);
-    log(`Path to python file: ${pythonScriptPath}`);
+    const pythonScriptPath = path.join(__dirname, '..', '..', 'app.exe');
+    const pythonProcess = spawn(pythonScriptPath);
 
+    log('Sending directory and video URL...');
     pythonProcess.stdin.write(JSON.stringify(data));
     pythonProcess.stdin.end();
-    log('Executing yt-dlp from python.')
   
     pythonProcess.stdout.on('data', (output) => {
-      log(`Python Script Output: ${output.toString()}`);
+      log(`Response: ${output.toString()}.`);
   
       if (output.toString().includes('Task completed')) {
         event.sender.send('backend-to-frontend', 'Task completed');
@@ -71,7 +70,7 @@ app.whenReady().then(() => {
     });
   
     pythonProcess.on('error', (error) => {
-      log(`Error running Python script: ${error}`, 'error');
+      log(`Failed to execute: ${error}.`, 'error');
       event.sender.send('backend-to-frontend', `Error: ${error.message}`);
     });
   });
