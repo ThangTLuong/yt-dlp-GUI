@@ -9,8 +9,8 @@
     "build": "electron-builder build",
     "dev:start": "npx electronmon ."
   },
-  "author": "kirbyluong",
-  "license": "ISC",
+  "author": "Thang",
+  "license": "MIT License",
   "build": {
     "appId": "com.Personal.ytdlpGUI",
     "asar": true,
